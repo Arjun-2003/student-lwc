@@ -1,0 +1,8 @@
+<template>
+    <lightning-card title="Create Contact">
+        <lightning-input label="Name" onchange={handleChange} data-id="LastName" required></lightning-input>
+        <lightning-input label="Email" type="email" onchange={handleChange} data-id="Email" required></lightning-input>
+        <lightning-input label="Phone" type="tel" onchange={handleChange} data-id="Phone"></lightning-input>
+        <lightning-button label="Create" onclick={createContact} class="slds-m-top_small"></lightning-button>
+    </lightning-card>
+</template>

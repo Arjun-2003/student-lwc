@@ -1,0 +1,17 @@
+<template>    
+    <lightning-button label="New Case" icon-name="utility:add" variant="brand" onclick={handleNewCase}></lightning-button>
+    <lightning-card>
+        <lightning-datatable
+            key-field="Id"
+            data={cases}
+            columns={columns}
+            onrowaction={handleRowAction}
+            hide-checkbox-column
+            show-row-number-column>
+        </lightning-datatable>
+        <template if:true={error}>
+            <div class="slds-text-color_error">{error}</div>
+        </template>
+    </lightning-card>
+    <c-case-form-modal record-id={selectedCaseId} is-open={isFormOpen} oncasesaved={refreshCaseList} onclose={handleModalClose}></c-case-form-modal>
+</template>

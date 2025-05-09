@@ -1,0 +1,26 @@
+<template>
+    <lightning-input label = "search account by name" value = {searchKey} onchange={handleSearchChange}></lightning-input>
+    <lightning-button label="search" onclick={handleSearchClick}></lightning-button>
+
+        <template if:true={accounts}>
+            <table border="2">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Industry</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <template for:each={accounts} for:item="acc">
+                    <tr key={acc.Id}>
+                        <td>{acc.Name}</td>
+                        <td>{acc.Industry}</td>
+                        <td>{acc.Phone}</td>
+                    </tr>
+                </template>
+            </tbody>
+            </table>
+        </template>        
+</template>

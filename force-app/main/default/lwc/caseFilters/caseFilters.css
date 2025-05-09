@@ -1,0 +1,10 @@
+.filter-row {
+    display: flex;
+    gap: 1rem; 
+    align-items: flex-end; 
+    padding-left: 15px;
+}
+
+.filter-row lightning-combobox {
+    flex: 1; 
+}

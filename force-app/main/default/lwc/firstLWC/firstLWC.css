@@ -1,0 +1,9 @@
+.information {
+    background-color: black; 
+    color: white; 
+    margin: 20px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 12px; 
+    font-size: 16px;
+}

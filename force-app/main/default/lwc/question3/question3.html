@@ -1,0 +1,14 @@
+<template>
+    <div class='main'>
+       <div class="btn"> 
+           <button class="button31" onclick={listCon}>getContact</button>
+       </div>
+       <div class="conList"> 
+           <template if:true={conData}>
+               <template for:each={conData} for:item="con">
+                   <li key={con.Id}>{con.Name},{con.Email},{con.Phone}</li>
+               </template>
+           </template>
+       </div>
+    </div>
+   </template>
