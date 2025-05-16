@@ -1,0 +1,107 @@
+<template>
+    <lightning-card title="EVENT REGISTRATION">
+    <lightning-record-edit-form
+    object-api-name="Event_Registration__c"
+    onsuccess={handleSuccess}
+
+    >
+    <lightning-input-field field-name="Attendee__c"> </lightning-input-field>
+    <lightning-input-field field-name="Event__c"> </lightning-input-field>
+    <lightning-input-field field-name="Status__c"> </lightning-input-field>
+    <lightning-input-field field-name="Email__c"></lightning-input-field>
+
+    <div>
+        <lightning-button variant="brand" type="submit" label="Create"></lightning-button>
+    </div>
+</lightning-record-edit-form>
+</lightning-card>
+</template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<template>
+    <lightning-card title = 'EVENT REGISTRATION'>
+        <div>
+            <lightning-input
+                label="Enter Event Name"
+                value={eventValue}
+                onchange={afterEntringEvent}>
+            </lightning-input>
+            <lightning-input
+                label="Enter Attendes"
+                value={attendeesValue}
+                onchage={afterEntringaAttendees}>
+            </lightning-input>
+            <lightning-combobox
+                label="Status"
+                value={statusInputValue}
+                options={statusOptions}
+                onchange={handleStatusChange}>
+            </lightning-combobox>
+            <lightning-button
+                label="CREATE"
+                onclick={afterClickCreate}>
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>
+-->

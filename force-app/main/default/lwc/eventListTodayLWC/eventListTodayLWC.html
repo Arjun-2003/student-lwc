@@ -1,0 +1,36 @@
+<template>
+    <lightning-card title="UPCOMING EVENTS">
+        <div>
+             <lightning-input
+                label="Search by Event Name"
+                value={nameKeyword}
+                onchange={handleSearchInput}
+                placeholder="Enter Event Name">
+            </lightning-input>
+
+            <lightning-combobox
+                label="Filter by Type"
+                value={typeFilter}
+                options={typeOptions}
+                onchange={handleTypeChange}>
+            </lightning-combobox>
+
+            <template if:true={events.length}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={events}
+                    columns={columns}>
+                </lightning-datatable>
+            </template>
+
+            <template if:false={events.length}>
+                <p>No upcoming events found</p>
+            </template>
+
+            <template if:true={error}>
+                <p>Error: {error.body.message}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
+

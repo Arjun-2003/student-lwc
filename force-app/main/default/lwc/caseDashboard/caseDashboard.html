@@ -1,6 +1,8 @@
 <template>
-    <lightning-card title = "Cash Dashboard">
-        <c-case-filters onfilterchange={handleChange}></c-case-filters>
-
-    </lightning-card></lightning-card>
+    <lightning-card title="Cash Dashboard">
+        <lightning-button label={isChildVisible} onclick={toggleChildVisibility}></lightning-button>
+        <template if:true={isChildVisible}>
+            <c-case-filters onfilterchange={handleChange}></c-case-filters>
+        </template>
+    </lightning-card>
 </template>

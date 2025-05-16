@@ -1,0 +1,7 @@
+<template>
+    <lightning-button label={buttonLabel} onclick={toggleChildVisibility}></lightning-button>
+
+    <template if:true={isChildVisible}>
+        <c-case-Dashboard></c-case-DashBoard>
+    </template>
+</template>

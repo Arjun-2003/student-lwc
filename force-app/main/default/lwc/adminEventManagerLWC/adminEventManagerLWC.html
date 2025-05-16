@@ -1,0 +1,104 @@
+<template>
+    <template if:true={isAdmin}>
+        <lightning-card title="Admin Event Manager">
+            <lightning-button label="New Event" onclick={openNewForm} class="slds-m-bottom_small"></lightning-button>
+
+            <lightning-datatable
+                key-field="Id"
+                data={events}
+                columns={columns}
+                onrowaction={handleRowAction}>
+            </lightning-datatable>
+
+            <template if:true={showForm}>
+                <section role="dialog" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <h2 class="slds-modal__title">{formTitle}</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium">
+                            <lightning-record-edit-form
+                                object-api-name="Event__c"
+                                record-id={selectedEventId}
+                                onsuccess={handleSuccess}>
+
+                                <lightning-input-field field-name="Name"></lightning-input-field>
+                                <lightning-input-field field-name="Event_Date__c"></lightning-input-field>
+                                <lightning-input-field field-name="Event_Type__c"></lightning-input-field>
+                                <lightning-input-field field-name="Location__c"></lightning-input-field>
+                                <lightning-input-field field-name="Max_Attendees__c"></lightning-input-field>
+
+                                <div class="slds-m-top_medium">
+                                    <lightning-button type="submit" label="Save" variant="brand"></lightning-button>
+                                    <lightning-button label="Cancel" onclick={closeForm} class="slds-m-left_small"></lightning-button>
+                                </div>
+                            </lightning-record-edit-form>
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+
+            <template if:true={showRegistrationModal}>
+                <section role="dialog" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <h2 class="slds-modal__title">Event Registrations</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Attendee Name">Attendee Name</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Status">Status</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Registered On">Registered On</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Actions">Actions</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={registrations} for:item="reg">
+                                        <tr key={reg.Id}>
+                                            <td>{reg.Attendee__r.Name}</td>
+                                            <td>{reg.Status__c}</td>
+                                            <td>{reg.Registered_On__c}</td>
+                                            <td>
+                                                <template if:true={reg.isRegistered}>
+                                                    <lightning-button
+                                                        label="Cancel Registration"
+                                                        data-id={reg.Id}
+                                                        onclick={handleCancelRegistration}
+                                                        variant="destructive"
+                                                        size="small">
+                                                    </lightning-button>
+                                                    <template if:false={reg.isRegistered}>
+                                                        <span class="slds-badge slds-theme_success">Done</span>
+                                                    </template>
+                                                </template>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                        <footer class="slds-modal__footer">
+                          <lightning-button label="Close" onclick={closeRegistrationModal}></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+        </lightning-card>
+    </template>
+
+    <template if:false={isAdmin}>
+        <p class="slds-text-color_error slds-p-around_medium">Access Denied. Admins Only.</p>
+    </template>
+</template>
